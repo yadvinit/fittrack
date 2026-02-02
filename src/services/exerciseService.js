@@ -1,25 +1,26 @@
-const API_NINJAS_KEY = 'ReM76ZkyBBerkfSQWZ0FlqwCtY43VnLR1daRNxkw';
-const API_NINJAS_BASE = 'https://api.api-ninjas.com/v1/exercises';
+const RAPIDAPI_KEY = '52868d7e37msh2148f472139ecb4p14825ajsn7ace0222b913';
+const RAPIDAPI_HOST = 'exercisedb.p.rapidapi.com';
+const API_BASE = 'https://exercisedb.p.rapidapi.com/exercises';
 
 export const exerciseService = {
-  fetchExercises: async (page = 1, searchTerm = '') => {
+  fetchExercises: async (searchTerm = '', bodyPart = '') => {
     try {
-      const offset = (page - 1) * 10;
-      let url = API_NINJAS_BASE;
+      let url = API_BASE;
       
       if (searchTerm) {
-        url += `?name=${encodeURIComponent(searchTerm)}`;
-      } else {
-        const muscleGroups = ['chest', 'biceps', 'quadriceps', 'abdominals', 'lats', 'triceps', 'shoulders'];
-        const randomMuscle = muscleGroups[page % muscleGroups.length];
-        url += `?muscle=${randomMuscle}&offset=${offset}`;
+        url = `https://exercisedb.p.rapidapi.com/exercises/name/${encodeURIComponent(searchTerm)}`;
+      } else if (bodyPart) {
+        url = `https://exercisedb.p.rapidapi.com/exercises/bodyPart/${bodyPart}`;
       }
+      
+      // Add limit parameter to avoid fetching too many exercises
+      url += url.includes('?') ? '&limit=20' : '?limit=20';
       
       const response = await fetch(url, {
         method: 'GET',
         headers: {
-          'X-Api-Key': API_NINJAS_KEY,
-          'Content-Type': 'application/json',
+          'X-RapidAPI-Key': RAPIDAPI_KEY,
+          'X-RapidAPI-Host': RAPIDAPI_HOST,
         },
       });
       
@@ -30,21 +31,20 @@ export const exerciseService = {
       const data = await response.json();
       
       const exercises = data.map((exercise, index) => ({
-        id: `${exercise.name.replace(/\s/g, '_')}_${page}_${index}`,
+        id: exercise.id || `${exercise.name.replace(/\s/g, '_')}_${index}`,
         name: exercise.name,
-        description: exercise.instructions || 'No description available',
-        type: exercise.type || 'strength',
-        muscle: exercise.muscle || 'general',
-        difficulty: exercise.difficulty || 'beginner',
+        description: exercise.instructions?.join(' ') || 'No description available',
+        type: exercise.equipment || 'bodyweight',
+        muscle: exercise.target || exercise.bodyPart || 'general',
+        difficulty: 'intermediate',
         equipment: exercise.equipment || 'none',
+        gifUrl: exercise.gifUrl || '',
       }));
       
       return {
         success: true,
         exercises: exercises,
         count: exercises.length,
-        next: exercises.length >= 10,
-        previous: page > 1,
       };
     } catch (error) {
       console.error('Error fetching exercises:', error);
