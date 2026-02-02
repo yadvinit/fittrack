@@ -1,8 +1,7 @@
 import Cookies from 'js-cookie';
 
-const AUTH_API_URL = import.meta.env.DEV 
-  ? '/api/login'  
-  : 'https://apis.ccbp.in/login';  
+// Always use the proxy endpoint in both dev and production
+const AUTH_API_URL = '/api/login';  
 
 export const authService = {
   login: async (username, password) => {
