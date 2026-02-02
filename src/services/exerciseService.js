@@ -1,7 +1,18 @@
 const API_NINJAS_KEY = 'ReM76ZkyBBerkfSQWZ0FlqwCtY43VnLR1daRNxkw';
 const API_NINJAS_BASE = 'https://api.api-ninjas.com/v1/exercises';
 
-const FALLBACK_EXERCISES = [];
+const FALLBACK_EXERCISES = [
+  { name: 'Push-ups', instructions: 'Classic bodyweight chest exercise', type: 'strength', muscle: 'chest', difficulty: 'beginner' },
+  { name: 'Squats', instructions: 'Lower body compound movement', type: 'strength', muscle: 'quadriceps', difficulty: 'beginner' },
+  { name: 'Lunges', instructions: 'Single leg strength exercise', type: 'strength', muscle: 'quadriceps', difficulty: 'beginner' },
+  { name: 'Plank', instructions: 'Core stability hold', type: 'strength', muscle: 'abdominals', difficulty: 'beginner' },
+  { name: 'Jumping Jacks', instructions: 'Full body cardio exercise', type: 'cardio', muscle: 'general', difficulty: 'beginner' },
+  { name: 'Burpees', instructions: 'High intensity full body exercise', type: 'cardio', muscle: 'general', difficulty: 'intermediate' },
+  { name: 'Mountain Climbers', instructions: 'Dynamic core and cardio exercise', type: 'cardio', muscle: 'abdominals', difficulty: 'intermediate' },
+  { name: 'Bicycle Crunches', instructions: 'Rotational ab exercise', type: 'strength', muscle: 'abdominals', difficulty: 'beginner' },
+  { name: 'Pull-ups', instructions: 'Upper body pulling exercise', type: 'strength', muscle: 'lats', difficulty: 'intermediate' },
+  { name: 'Dips', instructions: 'Triceps and chest exercise', type: 'strength', muscle: 'triceps', difficulty: 'intermediate' },
+];
 
 export const exerciseService = {
   fetchExercises: async (page = 1, searchTerm = '') => {
@@ -43,7 +54,7 @@ export const exerciseService = {
       
       return {
         success: true,
-        exercises: exercises.length > 0 ? exercises : this.getFallbackExercises(page, searchTerm),
+        exercises: exercises.length > 0 ? exercises : exerciseService.getFallbackExercises(page, searchTerm),
         count: exercises.length,
         next: exercises.length >= 10,
         previous: page > 1,
@@ -52,7 +63,7 @@ export const exerciseService = {
       console.error('Error fetching exercises:', error);
       return {
         success: true,
-        exercises: this.getFallbackExercises(page, searchTerm),
+        exercises: exerciseService.getFallbackExercises(page, searchTerm),
         count: FALLBACK_EXERCISES.length,
         next: false,
         previous: page > 1,
