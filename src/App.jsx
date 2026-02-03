@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter , Routes, Route, Navigate } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import ProtectedRoute from './components/ProtectedRoute';
 import Login from './pages/Login';
@@ -11,7 +11,7 @@ import Progress from './pages/Progress';
 function App() {
   return (
     
-    <Router>
+    <BrowserRouter>
       <div className="min-h-screen bg-gray-50">
         <Navbar />
         <Routes>
@@ -61,7 +61,7 @@ function App() {
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </div>
-    </Router>
+    </BrowserRouter>
 
   );
 }

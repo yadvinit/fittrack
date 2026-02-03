@@ -49,9 +49,7 @@ const BrowseExercises = () => {
           <h1 className="text-4xl sm:text-5xl font-extrabold text-gray-900 mb-3">
             Browse Exercises
           </h1>
-          <p className="text-base sm:text-lg text-gray-600">
-            Explore exercises from API-Ninjas database 💪
-          </p>
+          
         </div>
 
         <div className="bg-white rounded-2xl shadow-md p-6 mb-8">
@@ -84,14 +82,7 @@ const BrowseExercises = () => {
           </form>
         </div>
 
-        <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
-          <p className="text-sm text-blue-800">
-            💡 <strong>Using API-Ninjas Exercise Database</strong> - Get your free API key at{' '}
-            <a href="https://api-ninjas.com/api/exercises" target="_blank" rel="noopener noreferrer" className="underline font-semibold">
-              api-ninjas.com
-            </a>
-          </p>
-        </div>
+       
 
         {loading && (
           <div className="flex justify-center items-center py-20">

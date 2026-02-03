@@ -1,6 +1,5 @@
 import Cookies from 'js-cookie';
 
-// Always use the proxy endpoint in both dev and production
 const AUTH_API_URL = '/api/login';  
 
 export const authService = {
