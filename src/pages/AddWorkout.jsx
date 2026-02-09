@@ -232,21 +232,6 @@ const AddWorkout = () => {
               </div>
             )}
 
-            {/* Notes */}
-            <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-2">
-                Notes (Optional)
-              </label>
-              <textarea
-                name="notes"
-                value={formData.notes}
-                onChange={handleChange}
-                placeholder="Add any additional notes about this workout..."
-                rows="4"
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 resize-none"
-              />
-            </div>
-
             {/* Buttons */}
             <div className="flex gap-4 pt-4">
               <button
@@ -265,17 +250,6 @@ const AddWorkout = () => {
               </button>
             </div>
           </form>
-        </div>
-
-        {/* Tips */}
-        <div className="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-6">
-          <h3 className="font-bold text-blue-900 mb-2">💡 Tips</h3>
-          <ul className="text-sm text-blue-800 space-y-1">
-            <li>• Fill in all required fields marked with *</li>
-            <li>• Use the Browse button to find exercises from our database</li>
-            <li>• Calories are automatically calculated based on your workout</li>
-            <li>• Track weight to monitor your strength progression</li>
-          </ul>
         </div>
 
       </div>

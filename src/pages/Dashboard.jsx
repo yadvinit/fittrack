@@ -38,12 +38,12 @@ const Dashboard = () => {
   }
 
   const statCards = [
-    { title: 'Total Workouts', value: stats.totalWorkouts, icon: '💪', color: 'bg-blue-500' },
-    { title: 'This Week', value: stats.weekWorkouts, icon: '📅', color: 'bg-green-500' },
-    { title: 'This Month', value: stats.monthWorkouts, icon: '📊', color: 'bg-purple-500' },
-    { title: 'Calories Burned', value: stats.totalCalories, icon: '🔥', color: 'bg-orange-500' },
-    { title: 'Current Streak', value: `${stats.streak} days`, icon: '⚡', color: 'bg-yellow-500' },
-    { title: 'Week Calories', value: stats.weekCalories, icon: '📈', color: 'bg-red-500' },
+    { title: 'Total Workouts', value: stats.totalWorkouts,  color: 'bg-blue-500' },
+    { title: 'This Week', value: stats.weekWorkouts,  color: 'bg-green-500' },
+    { title: 'This Month', value: stats.monthWorkouts,  color: 'bg-purple-500' },
+    { title: 'Calories Burned', value: stats.totalCalories,  color: 'bg-orange-500' },
+    { title: 'Current Streak', value: `${stats.streak} days`,  color: 'bg-yellow-500' },
+    { title: 'Week Calories', value: stats.weekCalories,  color: 'bg-red-500' },
   ];
 
   return (
@@ -52,11 +52,8 @@ const Dashboard = () => {
 
 
         <div className="mb-10">
-          <h1 className="text-4xl sm:text-5xl font-extrabold text-gray-900 mb-3 tracking-tight">
-            Dashboard
-          </h1>
           <p className="text-base sm:text-lg text-gray-600">
-            Welcome back! Here's your fitness overview 👋
+            Welcome back! Great to see you again.
           </p>
         </div>
 
@@ -76,9 +73,7 @@ const Dashboard = () => {
                     {stat.value}
                   </p>
                 </div>
-                <div className={`${stat.color} text-white text-4xl p-4 rounded-xl shadow`}>
-                  {stat.icon}
-                </div>
+                
               </div>
             </div>
           ))}

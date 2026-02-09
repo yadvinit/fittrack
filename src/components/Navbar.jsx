@@ -18,11 +18,11 @@ const Navbar = () => {
   }
 
   const navLinks = [
-    { to: '/', label: 'Dashboard', icon: '🏠' },
-    { to: '/exercises', label: 'Browse', icon: '💪' },
-    { to: '/add-workout', label: 'Log Workout', icon: '➕' },
-    { to: '/history', label: 'History', icon: '📋' },
-    { to: '/progress', label: 'Progress', icon: '📈' },
+    { to: '/', label: 'Dashboard' },
+    { to: '/exercises', label: 'Browse' },
+    { to: '/add-workout', label: 'Log Workout' },
+    { to: '/history', label: 'History' },
+    { to: '/progress', label: 'Progress' },
   ];
 
   const isActive = (path) => {
@@ -50,7 +50,7 @@ const Navbar = () => {
                     : 'text-gray-700 hover:bg-gray-100'
                 }`}
               >
-                <span className="mr-1">{link.icon}</span>
+               
                 {link.label}
               </Link>
             ))}
